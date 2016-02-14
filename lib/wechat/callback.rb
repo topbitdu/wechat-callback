@@ -1,4 +1,4 @@
-require "wechat/callback/version"
+require 'wechat/callback/version'
 
 module Wechat
   module Callback
