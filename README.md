@@ -1,4 +1,4 @@
-# Wechat::Callback
+# Wechat Callback 微信回调库
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://opensource.org/licenses/MIT)
 [![Gem Version](https://badge.fury.io/rb/wechat-callback.svg)](https://badge.fury.io/rb/wechat-callback)
@@ -24,7 +24,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+signature = Wechat::Callback::Signature.create token, timestamp, nonce, text_1, text_2, text_3
+message_signature = Wechat::Callback::MessageSignature.create encoded_message, token, timestamp, nonce
+
+xml_document = Wechat::Callback::XmlDocument.load '<xml><FromUserID>FUID</FromUserID></xml>'
+xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID' # <xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
+```
 
 ## Development
 
