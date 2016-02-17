@@ -8,3 +8,7 @@
 ## v0.2
 1. Message Encryption class
 2. Message Decryption class
+
+## v0.3
+1. Random Byte Array class
+2. Secure Message class
