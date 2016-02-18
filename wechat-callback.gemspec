@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = [ 'Topbit Du' ]
   spec.email         = [ 'topbit.du@gmail.com' ]
 
-  spec.summary       = %q{Wechat Callback Library}
-  spec.description   = %q{The Wechat Callback Library is a code base to handle the remote calls from the Wechat servers.}
+  spec.summary       = %q{Wechat Callback Library 微信回调库}
+  spec.description   = %q{The Wechat Callback Library is a code base to handle the remote calls from the Wechat servers. 微信回调库用于处理微信服务器发出的请求。}
   spec.homepage      = "https://github.com/topbitdu/wechat-callback"
   spec.license       = 'MIT'
 
