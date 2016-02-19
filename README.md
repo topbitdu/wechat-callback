@@ -24,12 +24,60 @@ Or install it yourself as:
 
 ## Usage
 
+Gengerate Signature
 ```ruby
 signature = Wechat::Callback::Signature.create token, timestamp, nonce, text_1, text_2, text_3
-message_signature = Wechat::Callback::MessageSignature.create encoded_message, token, timestamp, nonce
+```
 
+Generate Message Signature
+```ruby
+message_signature = Wechat::Callback::MessageSignature.create encoded_message, token, timestamp, nonce
+```
+
+Parse XML Text into Hash
+```ruby
 xml_document = Wechat::Callback::XmlDocument.load '<xml><FromUserID>FUID</FromUserID></xml>'
+```
+
+Convert Hash into XML Text
+```ruby
 xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID' # <xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
+```
+
+Real Example for handling Wechat Message for Rails
+微信上的“消息加解密方式”必须是“安全模式”，不能是“明文模式”或者“兼容模式”
+```ruby
+if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:signature]
+  encoded_message = Wechat::Callback::XmlDocument.load(request.body.read)['Encrypt']
+  if Wechat::Callback::MessageSignature.create(encoded_message, Rails.application.secrets.wechat_validation_token, params[:timestamp], params[:nonce])==message_signature
+    message = Wechat::Callback::MessageDecryption.create encoded_message, Rails.application.secrets.wechat_encoding_aes_keys
+    random_bytes, xml_size, xml_text, app_id, padding_bytes = Wechat::Callback::SecureMessage.load message
+    if Rails.application.secrets.wechat_app_id==app_id
+      pairs = ::Wechat::Callback::XmlDocument.load xml_text
+      replying_pairs = {
+          'ToUserName'   => pairs['FromUserName'],
+          'FromUserName' => pairs['ToUserName'],
+          'CreateTime'   => Time.now.to_i,
+          'MsgType'      => 'text',
+          'Content'      => '您好！'
+        }
+      replying_xml_text = ::Wechat::Callback::XmlDocument.create replying_pairs
+
+      random_bytes       = Wechat::Callback::RandomByteArray.create 16
+      plain_text         = Wechat::Callback::SecureMessage.create random_bytes, replying_xml_text, Rails.application.secrets.wechat_app_id
+      encrypted          = Wechat::Callback::MessageEncryption.create plain_text, Rails.application.secrets.wechat_encoding_aes_keys
+      replying_singature = Wechat::Callback::Signature.create Rails.application.secrets.wechat_validation_token, params[:timestamp], params[:nonce], encrypted
+      encrypted_replying_pairs = {
+          'Encrypt'      => encrypted,
+          'MsgSignature' => replying_singature,
+          'TimeStamp'    => params[:timestamp],
+          'Nonce'        => params[:nonce]
+        }
+      replying_xml_text = ::Wechat::Callback::XmlDocument.create encrypted_replying_pairs
+      render status: 200, xml: replying_xml_text
+    end
+  end
+end
 ```
 
 ## Development
