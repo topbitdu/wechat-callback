@@ -12,6 +12,5 @@ require 'wechat/callback/secure_message'
 
 module Wechat
   module Callback
-    # Your code goes here...
   end
 end

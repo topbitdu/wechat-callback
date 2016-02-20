@@ -24,22 +24,22 @@ Or install it yourself as:
 
 ## Usage
 
-Gengerate Signature
+Gengerate Signature 生成参数签名
 ```ruby
 signature = Wechat::Callback::Signature.create token, timestamp, nonce, text_1, text_2, text_3
 ```
 
-Generate Message Signature
+Generate Message Signature 生成消息题签名
 ```ruby
 message_signature = Wechat::Callback::MessageSignature.create encoded_message, token, timestamp, nonce
 ```
 
-Parse XML Text into Hash
+Parse XML Text into Hash 将XML文本解析成Hash
 ```ruby
 xml_document = Wechat::Callback::XmlDocument.load '<xml><FromUserID>FUID</FromUserID></xml>'
 ```
 
-Convert Hash into XML Text
+Convert Hash into XML Text 将Hash转换成XML文本
 ```ruby
 xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID' # <xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
 ```
@@ -53,7 +53,7 @@ if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:s
     message = Wechat::Callback::MessageDecryption.create encoded_message, Rails.application.secrets.wechat_encoding_aes_keys
     random_bytes, xml_size, xml_text, app_id, padding_bytes = Wechat::Callback::SecureMessage.load message
     if Rails.application.secrets.wechat_app_id==app_id
-      pairs = ::Wechat::Callback::XmlDocument.load xml_text
+      pairs = Wechat::Callback::XmlDocument.load xml_text
       replying_pairs = {
           'ToUserName'   => pairs['FromUserName'],
           'FromUserName' => pairs['ToUserName'],
@@ -61,7 +61,7 @@ if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:s
           'MsgType'      => 'text',
           'Content'      => '您好！'
         }
-      replying_xml_text = ::Wechat::Callback::XmlDocument.create replying_pairs
+      replying_xml_text = Wechat::Callback::XmlDocument.create replying_pairs
 
       random_bytes       = Wechat::Callback::RandomByteArray.create 16
       plain_text         = Wechat::Callback::SecureMessage.create random_bytes, replying_xml_text, Rails.application.secrets.wechat_app_id
@@ -73,7 +73,7 @@ if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:s
           'TimeStamp'    => params[:timestamp],
           'Nonce'        => params[:nonce]
         }
-      replying_xml_text = ::Wechat::Callback::XmlDocument.create encrypted_replying_pairs
+      replying_xml_text = Wechat::Callback::XmlDocument.create encrypted_replying_pairs
       render status: 200, xml: replying_xml_text
     end
   end
