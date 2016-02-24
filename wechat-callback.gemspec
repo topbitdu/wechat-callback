@@ -4,16 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'wechat/callback/version'
 
 Gem::Specification.new do |spec|
-
-  spec.name          = 'wechat-callback'
-  spec.version       = Wechat::Callback::VERSION
-  spec.authors       = [ 'Topbit Du' ]
-  spec.email         = [ 'topbit.du@gmail.com' ]
-
-  spec.summary       = %q{Wechat Callback Library 微信回调库}
-  spec.description   = %q{Wechat Callback Library is a code base to handle the remote calls from the Wechat servers. 微信回调库用于处理微信服务器发出的请求。}
-  spec.homepage      = "https://github.com/topbitdu/wechat-callback"
-  spec.license       = 'MIT'
+  spec.name        = 'wechat-callback'
+  spec.version     = Wechat::Callback::VERSION
+  spec.authors     = [ 'Topbit Du' ]
+  spec.email       = [ 'topbit.du@gmail.com' ]
+  spec.summary     = 'Wechat Callback Library 微信回调库'
+  spec.description = 'Wechat Callback Library is a code base to handle the remote calls from the Wechat servers. 微信回调库用于处理微信服务器发出的请求。'
+  spec.homepage    = 'https://github.com/topbitdu/wechat-callback'
+  spec.license     = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
