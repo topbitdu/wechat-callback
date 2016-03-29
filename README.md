@@ -6,6 +6,10 @@
 Wechat Callback Library is a code base to handle the callbacks from the Wechat servers.
 微信回调库用于处理微信主动向服务器传回事件通知、即时消息等。
 
+## Recent Update
+Check out the [Road Map](ROADMAP.md) to find out what's the next.
+Check out the [Change Log](CHANGELOG.md) to find out what's new.
+
 ## Installation
 
 Add this line to your application's Gemfile:
