@@ -45,8 +45,13 @@ xml_document = Wechat::Callback::XmlDocument.load '<xml><FromUserID>FUID</FromUs
 
 Convert Hash into XML Text 将Hash转换成XML文本
 ```ruby
-xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID' # <xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
+xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID'
 ```
+The generated xml_text looks like
+```xml
+<xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
+```
+
 
 Real Example for handling Wechat Message for Rails
 微信上的“消息加解密方式”必须是“安全模式”，不能是“明文模式”或者“兼容模式”
