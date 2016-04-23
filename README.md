@@ -6,9 +6,13 @@
 Wechat Callback Library is a code base to handle the callbacks from the Wechat servers.
 微信回调库用于处理微信主动向服务器传回事件通知、即时消息等。
 
+
+
 ## Recent Update
 Check out the [Road Map](ROADMAP.md) to find out what's the next.
 Check out the [Change Log](CHANGELOG.md) to find out what's new.
+
+
 
 ## Installation
 
@@ -25,6 +29,8 @@ And then execute:
 Or install it yourself as:
 
     $ gem install wechat-callback
+
+
 
 ## Usage
 
@@ -51,6 +57,7 @@ The generated xml_text looks like
 ```xml
 <xml><FromUserID>FUID</FromUserID><ToUserID>TUID</ToUserID></xml>
 ```
+
 
 
 Real Example for handling Wechat Message for Rails
@@ -88,6 +95,8 @@ if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:s
   end
 end
 ```
+
+
 
 ## Development
 
