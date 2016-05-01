@@ -12,3 +12,6 @@
 ## v0.3
 1. Random Byte Array class
 2. Secure Message class
+
+## v0.4
+1. Improve the performance
