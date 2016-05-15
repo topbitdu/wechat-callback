@@ -34,22 +34,22 @@ Or install it yourself as:
 
 ## Usage
 
-Gengerate Signature 生成参数签名
+__Gengerate Signature 生成参数签名__
 ```ruby
 signature = Wechat::Callback::Signature.create token, timestamp, nonce, text_1, text_2, text_3
 ```
 
-Generate Message Signature 生成消息题签名
+__Generate Message Signature 生成消息题签名__
 ```ruby
 message_signature = Wechat::Callback::MessageSignature.create encoded_message, token, timestamp, nonce
 ```
 
-Parse XML Text into Hash 将XML文本解析成Hash
+__Parse XML Text into Hash 将XML文本解析成Hash__
 ```ruby
 xml_document = Wechat::Callback::XmlDocument.load '<xml><FromUserID>FUID</FromUserID></xml>'
 ```
 
-Convert Hash into XML Text 将Hash转换成XML文本
+__Convert Hash into XML Text 将Hash转换成XML文本__
 ```ruby
 xml_text = Wechat::Callback::XmlDocument.create FromUserID: 'FUID', ToUserID: 'TUID'
 ```
@@ -60,8 +60,8 @@ The generated xml_text looks like
 
 
 
-Real Example for handling Wechat Message for Rails
-微信上的“消息加解密方式”必须是“安全模式”，不能是“明文模式”或者“兼容模式”
+__Real Example for handling Wechat Message for Rails__
+__微信上的“消息加解密方式”必须是“安全模式”，不能是“明文模式”或者“兼容模式”__
 ```ruby
 if Wechat::Callback::Signature.create(wechat_token, timestamp, nonce)==params[:signature]
   encoded_message = Wechat::Callback::XmlDocument.load(request.body.read)['Encrypt']
