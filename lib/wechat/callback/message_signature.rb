@@ -12,7 +12,7 @@ class Wechat::Callback::MessageSignature
   # nonce URL上原有参数，随机数
   #
   def self.create(encoded_message, token, timestamp, nonce)
-    Digest::SHA1.hexdigest [ token, timestamp, nonce, encoded_message ].sort.join('')
+    Digest::SHA1.hexdigest [ token, timestamp, nonce, encoded_message ].sort.join
   end
 
 end
