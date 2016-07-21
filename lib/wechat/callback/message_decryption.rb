@@ -9,6 +9,9 @@ class Wechat::Callback::MessageDecryption
   #
   def self.create(encoded_message, encoded_aes_keys)
 
+    raise ArgumentError.new('The encoded_message argument is required.' ) if encoded_message.blank?
+    raise ArgumentError.new('The encoded_aes_keys argument is required.') if encoded_aes_keys.blank?
+
     encrypted_message = Base64.decode64(encoded_message).bytes.inject('') do |buffer, byte| buffer += [ byte ].pack 'C' end
     aes_keys          = encoded_aes_keys.map { |encoded_aes_key| Base64.decode64 "#{encoded_aes_key}=" }
 
