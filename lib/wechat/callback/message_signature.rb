@@ -12,7 +12,11 @@ class Wechat::Callback::MessageSignature
   # nonce URL上原有参数，随机数
   #
   def self.create(encoded_message, token, timestamp, nonce)
+
+    raise ArgumentError.new('The encoded_message argument is required.') if encoded_message.blank?
+
     Digest::SHA1.hexdigest [ token, timestamp, nonce, encoded_message ].sort.join
+
   end
 
 end
