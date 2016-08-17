@@ -11,6 +11,8 @@ class Wechat::Callback::SecureMessage
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.load(message_decryption)
 
+    raise ArgumentError.new('The message_decryption argument is required.') if message_decryption.blank?
+
     random_bytes = message_decryption[0..(RANDOM_LENGTH-1)].bytes
     xml_size     = message_decryption[RANDOM_LENGTH..(RANDOM_LENGTH+XML_SIZE_LENGTH-1)].reverse.unpack('l').first
 
@@ -32,6 +34,9 @@ class Wechat::Callback::SecureMessage
   # padding: AES采用CBC模式，秘钥长度为32个字节，数据采用PKCS#7填充；PKCS#7：K为秘钥字节数（采用32），buf为待加密的内容，N为其字节数。Buf需要被填充为K的整数倍。在buf的尾部填充(K-N%K)个字节，每个字节的内容是(K- N%K)； 
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.create(random_bytes, xml_text, app_id)
+
+    raise ArgumentError.new('The random_bytes argument is required.') if random_bytes.blank?
+
     xml_size_bytes = [ xml_text.bytes.length ].pack('l').reverse.bytes
     buffer         = random_bytes+xml_size_bytes+xml_text.bytes+app_id.bytes
     padding_length = 32-buffer.length%32
@@ -40,6 +45,9 @@ class Wechat::Callback::SecureMessage
   end
 
   def self.byte_array_to_string(bytes)
+
+    raise ArgumentError.new('The bytes argument is required.') if bytes.blank?
+
     bytes.inject('') do |buffer, byte| buffer += [ byte ].pack 'C' end
   end
 

@@ -13,7 +13,11 @@ class Wechat::Callback::Signature
   # 3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
   #
   def self.create(token, timestamp, nonce, *args)
+
+    raise ArgumentError.new('The token argument is required.') if token.blank?
+
     Digest::SHA1.hexdigest [ token, nonce, timestamp, *args ].sort.join
+
   end
 
 end
