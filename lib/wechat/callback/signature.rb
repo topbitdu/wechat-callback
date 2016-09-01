@@ -14,7 +14,8 @@ class Wechat::Callback::Signature
   #
   def self.create(token, timestamp, nonce, *args)
 
-    raise ArgumentError.new('The token argument is required.') if token.blank?
+    raise ArgumentError.new('The token argument is required.'    ) if token.blank?
+    raise ArgumentError.new('The timestamp argument is required.') if timestamp.blank?
 
     Digest::SHA1.hexdigest [ token, nonce, timestamp, *args ].sort.join
 
