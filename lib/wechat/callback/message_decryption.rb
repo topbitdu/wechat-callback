@@ -1,5 +1,7 @@
 class Wechat::Callback::MessageDecryption
 
+  extend Wechat::Core::Common
+
   # 消息加解密
   # http://mp.weixin.qq.com/wiki/6/90f7259c0d0739bbb41d9f4c4c8e59a2.html
   #
@@ -9,7 +11,8 @@ class Wechat::Callback::MessageDecryption
   #
   def self.create(encoded_message, encoded_aes_keys)
 
-    raise ArgumentError.new('The encoded_message argument is required.' ) if encoded_message.blank?
+    assert_present! :encoded_message, encoded_message
+    #raise ArgumentError.new('The encoded_message argument is required.' ) if encoded_message.blank?
     raise ArgumentError.new('The encoded_aes_keys argument is required.') if encoded_aes_keys.blank?
 
     encrypted_message = Base64.decode64(encoded_message).bytes.inject('') do |buffer, byte| buffer += [ byte ].pack 'C' end
