@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://opensource.org/licenses/MIT)
 [![Gem Version](https://badge.fury.io/rb/wechat-callback.svg)](https://badge.fury.io/rb/wechat-callback)
+[![Dependency Status](https://gemnasium.com/badges/github.com/topbitdu/wechat-callback.svg)](https://gemnasium.com/github.com/topbitdu/wechat-callback)
 
 Wechat Callback Library is a code base to handle the callbacks from the Wechat servers.
 微信回调库用于处理微信主动向服务器传回事件通知、即时消息等。
