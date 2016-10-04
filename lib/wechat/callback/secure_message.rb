@@ -1,5 +1,7 @@
 class Wechat::Callback::SecureMessage
 
+  extend Wechat::Core::Common
+
   RANDOM_LENGTH   = 16
   XML_SIZE_LENGTH = 4
 
@@ -11,7 +13,8 @@ class Wechat::Callback::SecureMessage
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.load(message_decryption)
 
-    raise ArgumentError.new('The message_decryption argument is required.') if message_decryption.blank?
+    assert_present! :message_decryption, message_decryption
+    #raise ArgumentError.new('The message_decryption argument is required.') if message_decryption.blank?
 
     random_bytes = message_decryption[0..(RANDOM_LENGTH-1)].bytes
     xml_size     = message_decryption[RANDOM_LENGTH..(RANDOM_LENGTH+XML_SIZE_LENGTH-1)].reverse.unpack('l').first
