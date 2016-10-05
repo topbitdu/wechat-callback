@@ -1,5 +1,7 @@
 class Wechat::Callback::Signature
 
+  extend Wechat::Core::Common
+
   # 验证服务器地址的有效性
   # http://mp.weixin.qq.com/wiki/17/2d4265491f12608cd170a95559800f2d.html#.E7.AC.AC.E4.BA.8C.E6.AD.A5.EF.BC.9A.E9.AA.8C.E8.AF.81.E6.9C.8D.E5.8A.A1.E5.99.A8.E5.9C.B0.E5.9D.80.E7.9A.84.E6.9C.89.E6.95.88.E6.80.A7
   #
@@ -14,6 +16,7 @@ class Wechat::Callback::Signature
   #
   def self.create(token, timestamp, nonce, *args)
 
+    assert_present! :token, token
     raise ArgumentError.new('The token argument is required.'    ) if token.blank?
     raise ArgumentError.new('The timestamp argument is required.') if timestamp.blank?
 
