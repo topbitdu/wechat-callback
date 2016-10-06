@@ -10,8 +10,9 @@ class Wechat::Callback::MessageEncryption
   def self.create(plain_text, encoded_aes_keys)
 
     assert_present! :plain_text, plain_text
+    assert_present! :encoded_aes_keys, encoded_aes_keys
     #raise ArgumentError.new('The plain_text argument is required.'      ) if plain_text.blank?
-    raise ArgumentError.new('The encoded_aes_keys argument is required.') if encoded_aes_keys.blank?
+    #raise ArgumentError.new('The encoded_aes_keys argument is required.') if encoded_aes_keys.blank?
 
     cipher = OpenSSL::Cipher::AES.new(256, 'CBC')
     cipher.encrypt
