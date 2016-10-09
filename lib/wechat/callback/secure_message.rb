@@ -38,7 +38,8 @@ class Wechat::Callback::SecureMessage
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.create(random_bytes, xml_text, app_id)
 
-    raise ArgumentError.new('The random_bytes argument is required.') if random_bytes.blank?
+    assert_present! :random_bytes, random_bytes
+    #raise ArgumentError.new('The random_bytes argument is required.') if random_bytes.blank?
     raise ArgumentError.new('The xml_text argument is required.'    ) if xml_text.blank?
 
     xml_size_bytes = [ xml_text.bytes.length ].pack('l').reverse.bytes
