@@ -7,7 +7,6 @@ class Wechat::Callback::RandomByteArray
   def self.create(length)
 
     assert_present! :length, length
-    #raise ArgumentError.new('The length argument is required.') if length.blank?
 
     [*0..255].sample length
 
