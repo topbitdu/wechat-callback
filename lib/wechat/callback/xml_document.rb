@@ -19,8 +19,8 @@ class Wechat::Callback::XmlDocument
   # http://mp.weixin.qq.com/wiki/6/90f7259c0d0739bbb41d9f4c4c8e59a2.html
   def self.create(pairs)
 
-    #assert_present! :pairs, pairs
-    raise ArgumentError.new('The pairs argument is required.') if pairs.blank?
+    assert_present! :pairs, pairs
+    #raise ArgumentError.new('The pairs argument is required.') if pairs.blank?
 
     xml = '<xml>'
     pairs.each do |name, value| xml << "<#{name}><![CDATA[#{value}]]></#{name}>" end
