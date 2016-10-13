@@ -7,7 +7,6 @@ class Wechat::Callback::XmlDocument
   def self.load(xml_text)
 
     assert_present! :xml_text, xml_text
-    #raise ArgumentError.new('The xml_text argument is required.') if xml_text.blank?
 
     pairs = {}
     Nokogiri::XML(xml_text).xpath('/xml').first.children.each do |element| pairs[element.name] = element.text end
