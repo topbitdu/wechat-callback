@@ -11,7 +11,7 @@ class Wechat::Callback::MessageDecryption
   #
   def self.create(encoded_message, encoded_aes_keys)
 
-    assert_present! :encoded_message, encoded_message
+    assert_present! :encoded_message,  encoded_message
     assert_present! :encoded_aes_keys, encoded_aes_keys
 
     encrypted_message = Base64.decode64(encoded_message).bytes.inject('') do |buffer, byte| buffer += [ byte ].pack 'C' end
