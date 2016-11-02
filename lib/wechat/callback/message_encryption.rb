@@ -9,7 +9,7 @@ class Wechat::Callback::MessageEncryption
   # msg_encrypt=Base64_Encode(AES_Encrypt [random(16B)+ msg_len(4B) + msg + $AppId])
   def self.create(plain_text, encoded_aes_keys)
 
-    assert_present! :plain_text, plain_text
+    assert_present! :plain_text,       plain_text
     assert_present! :encoded_aes_keys, encoded_aes_keys
 
     cipher = OpenSSL::Cipher::AES.new(256, 'CBC')
