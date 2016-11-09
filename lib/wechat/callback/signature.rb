@@ -16,7 +16,7 @@ class Wechat::Callback::Signature
   #
   def self.create(token, timestamp, nonce, *args)
 
-    assert_present! :token, token
+    assert_present! :token,     token
     assert_present! :timestamp, timestamp
     assert_present! :nonce, nonce
     #raise ArgumentError.new('The token argument is required.'    ) if token.blank?
