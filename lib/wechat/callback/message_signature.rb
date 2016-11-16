@@ -16,7 +16,7 @@ class Wechat::Callback::MessageSignature
   def self.create(encoded_message, token, timestamp, nonce)
 
     assert_present! :encoded_message, encoded_message
-    assert_present! :token, token
+    assert_present! :token,           token
     assert_present! :timestamp, timestamp
     #raise ArgumentError.new('The encoded_message argument is required.') if encoded_message.blank?
     #raise ArgumentError.new('The token argument is required.'          ) if token.blank?
