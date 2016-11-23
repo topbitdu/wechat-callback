@@ -39,7 +39,7 @@ class Wechat::Callback::SecureMessage
   def self.create(random_bytes, xml_text, app_id)
 
     assert_present! :random_bytes, random_bytes
-    assert_present! :xml_text, xml_text
+    assert_present! :xml_text,     xml_text
     assert_present! :app_id, app_id
     #raise ArgumentError.new('The random_bytes argument is required.') if random_bytes.blank?
     #raise ArgumentError.new('The xml_text argument is required.'    ) if xml_text.blank?
