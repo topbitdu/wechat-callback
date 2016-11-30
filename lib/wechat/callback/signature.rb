@@ -18,7 +18,7 @@ class Wechat::Callback::Signature
 
     assert_present! :token,     token
     assert_present! :timestamp, timestamp
-    assert_present! :nonce, nonce
+    assert_present! :nonce,     nonce
     #raise ArgumentError.new('The token argument is required.'    ) if token.blank?
     #raise ArgumentError.new('The timestamp argument is required.') if timestamp.blank?
 
