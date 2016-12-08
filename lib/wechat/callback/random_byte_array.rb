@@ -4,7 +4,7 @@ class Wechat::Callback::RandomByteArray
 
   LENGTH = 16
 
-  def self.create(length)
+  def self.create(length = LENGTH)
 
     assert_present! :length, length
 
