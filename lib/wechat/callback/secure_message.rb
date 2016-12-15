@@ -53,7 +53,8 @@ class Wechat::Callback::SecureMessage
 
   def self.byte_array_to_string(bytes)
 
-    raise ArgumentError.new('The bytes argument is required.') if bytes.blank?
+    assert_present! :bytes, bytes
+    #raise ArgumentError.new('The bytes argument is required.') if bytes.blank?
 
     bytes.inject('') do |buffer, byte| buffer += [ byte ].pack 'C' end
   end
