@@ -4,6 +4,8 @@ class Wechat::Callback::RandomByteArray
 
   LENGTH = 16
 
+  ##
+  # 常见一个指定长度的随机字节数组。
   def self.create(length = LENGTH)
 
     assert_present! :length, length
