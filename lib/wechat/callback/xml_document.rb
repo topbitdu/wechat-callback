@@ -2,6 +2,7 @@ class Wechat::Callback::XmlDocument
 
   extend Wechat::Core::Common
 
+  ##
   # 消息加解密 技术方案
   # http://mp.weixin.qq.com/wiki/6/90f7259c0d0739bbb41d9f4c4c8e59a2.html
   def self.load(xml_text)
