@@ -5,11 +5,12 @@ class Wechat::Callback::SecureMessage
   RANDOM_LENGTH   = 16
   XML_SIZE_LENGTH = 4
 
+  ##
   # 消息加解密
   # http://mp.weixin.qq.com/wiki/6/90f7259c0d0739bbb41d9f4c4c8e59a2.html
   #
   # random(16B) + msg_len(4B) + msg + $AppId + padding
-  # padding: AES采用CBC模式，秘钥长度为32个字节，数据采用PKCS#7填充；PKCS#7：K为秘钥字节数（采用32），buf为待加密的内容，N为其字节数。Buf需要被填充为K的整数倍。在buf的尾部填充(K-N%K)个字节，每个字节的内容是(K- N%K)； 
+  # padding: AES采用CBC模式，秘钥长度为32个字节，数据采用PKCS#7填充；PKCS#7：K为秘钥字节数（采用32），buf为待加密的内容，N为其字节数。Buf需要被填充为K的整数倍。在buf的尾部填充(K-N%K)个字节，每个字节的内容是(K- N%K)；
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.load(message_decryption)
 
@@ -32,9 +33,9 @@ class Wechat::Callback::SecureMessage
 
   # 消息加解密
   # http://mp.weixin.qq.com/wiki/6/90f7259c0d0739bbb41d9f4c4c8e59a2.html
-  # 
+  #
   # random(16B) + msg_len(4B) + msg + $AppId + padding
-  # padding: AES采用CBC模式，秘钥长度为32个字节，数据采用PKCS#7填充；PKCS#7：K为秘钥字节数（采用32），buf为待加密的内容，N为其字节数。Buf需要被填充为K的整数倍。在buf的尾部填充(K-N%K)个字节，每个字节的内容是(K- N%K)； 
+  # padding: AES采用CBC模式，秘钥长度为32个字节，数据采用PKCS#7填充；PKCS#7：K为秘钥字节数（采用32），buf为待加密的内容，N为其字节数。Buf需要被填充为K的整数倍。在buf的尾部填充(K-N%K)个字节，每个字节的内容是(K- N%K)；
   # 去掉rand_msg头部的16个随机字节，4个字节的msg_len,和尾部的$AppId即为最终的xml消息体
   def self.create(random_bytes, xml_text, app_id)
 
