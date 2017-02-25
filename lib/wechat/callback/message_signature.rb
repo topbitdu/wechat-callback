@@ -1,3 +1,6 @@
+##
+# Message Signature 是消息签名类。
+
 class Wechat::Callback::MessageSignature
 
   extend Wechat::Core::Common
