@@ -1,3 +1,6 @@
+##
+# Singature 用于生成参数签名。
+
 class Wechat::Callback::Signature
 
   extend Wechat::Core::Common
