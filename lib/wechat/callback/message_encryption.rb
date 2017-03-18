@@ -1,3 +1,6 @@
+##
+# Message Encryption 是消息加密类。
+
 class Wechat::Callback::MessageEncryption
 
   extend Wechat::Core::Common
