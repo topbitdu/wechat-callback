@@ -1,3 +1,6 @@
+##
+# Message Decryption 是消息解密类。
+
 class Wechat::Callback::MessageDecryption
 
   extend Wechat::Core::Common
