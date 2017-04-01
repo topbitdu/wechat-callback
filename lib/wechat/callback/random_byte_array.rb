@@ -1,3 +1,6 @@
+##
+# Random Byte Array 用于生成指定长度的随机数组。
+
 class Wechat::Callback::RandomByteArray
 
   extend Wechat::Core::Common
