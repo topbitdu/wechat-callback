@@ -1,3 +1,6 @@
+##
+# Secure Message 用于组合或者分解安全消息。
+
 class Wechat::Callback::SecureMessage
 
   extend Wechat::Core::Common
