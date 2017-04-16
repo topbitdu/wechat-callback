@@ -1,3 +1,6 @@
+##
+# XML Document 用于转换 Hash 格式的数据结构和 XML 文档。
+
 class Wechat::Callback::XmlDocument
 
   extend Wechat::Core::Common
