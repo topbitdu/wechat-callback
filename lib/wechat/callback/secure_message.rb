@@ -18,7 +18,6 @@ class Wechat::Callback::SecureMessage
   def self.load(message_decryption)
 
     assert_present! :message_decryption, message_decryption
-    #raise ArgumentError.new('The message_decryption argument is required.') if message_decryption.blank?
 
     random_bytes = message_decryption[0..(RANDOM_LENGTH-1)].bytes
     xml_size     = message_decryption[RANDOM_LENGTH..(RANDOM_LENGTH+XML_SIZE_LENGTH-1)].reverse.unpack('l').first
