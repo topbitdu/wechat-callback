@@ -44,8 +44,6 @@ class Wechat::Callback::SecureMessage
     assert_present! :random_bytes, random_bytes
     assert_present! :xml_text,     xml_text
     assert_present! :app_id, app_id
-    #raise ArgumentError.new('The random_bytes argument is required.') if random_bytes.blank?
-    #raise ArgumentError.new('The xml_text argument is required.'    ) if xml_text.blank?
 
     xml_size_bytes = [ xml_text.bytes.length ].pack('l').reverse.bytes
     buffer         = random_bytes+xml_size_bytes+xml_text.bytes+app_id.bytes
